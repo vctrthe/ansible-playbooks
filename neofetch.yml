@@ -1,0 +1,14 @@
+---
+- hosts: all  # Target all hosts defined in the selected inventory
+  become: yes
+  become_user: root
+  gather_facts: no
+
+  tasks:
+    - name: Run neofetch
+      command: neofetch
+      register: neofetch_output
+
+    - name: Display neofetch output
+      debug:
+        var: neofetch_output.stdout_lines
