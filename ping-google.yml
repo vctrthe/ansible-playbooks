@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: ping Google DNS
+      command: ping -c 4 8.8.8.8
+      register: ping_result
+
+    - name: Display ping results
+      debug:
+        var: ping_result.stdout_lines
